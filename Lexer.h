@@ -43,7 +43,7 @@ static const std::string TokenTypeStrings[] =
 class Token
 {
 public:
-	TokenType type {};
+	enum TokenType type {};
 	std::string text;
 	size_t lineNumber {1};
 	size_t charIndex {1};

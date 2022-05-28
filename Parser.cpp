@@ -12,21 +12,27 @@ void Parser::Parse(const std::vector<Token> &_tokens)
 		{
 			if (tokens[i + 1].type == OPEN_CURLY)
 			{
-				items.push_back(ParseItem(i, token.text, UN_MUTABLE));
+				// Item found.
+
+				items.push_back(ParseItem(i, token.text, IMMUTABLE));
 			}
 			else if (tokens[i + 1].type == OPEN_BRACKET)
 			{
+				// Array found.
+
 				arrays.push_back(ParseArray(i, token.text));
 			}
 			else if (tokens[i + 1].type == COLON && tokens[i + 2].type == IDENTIFIER)
 			{
+				// Mutability expressed.
+
 				i += 2;
 				token = tokens[i];
 
 				if (token.text == "mutable ")
 					{ items.push_back(ParseItem(i, tokens[i - 2].text, MUTABLE)); }
 				else if (token.text == "!mutable ")
-					{ items.push_back(ParseItem(i, tokens[i - 2].text, UN_MUTABLE)); }
+					{ items.push_back(ParseItem(i, tokens[i - 2].text, IMMUTABLE)); }
 				else
 				{
 					throw std::runtime_error(
@@ -73,7 +79,7 @@ Item Parser::ParseItem(size_t index, std::string _name, Access _isMutable)
 			item.isMutable = true;
 			break;
 
-		case UN_MUTABLE:
+		case IMMUTABLE:
 			item.isMutable = false;
 			break;
 	}
@@ -132,7 +138,7 @@ Array Parser::ParseArray(size_t index, std::string _name)
 		if (tok.type == IDENTIFIER)
 		{
 			if (tokens[i + 1].type == OPEN_CURLY)
-				{ arr.items.push_back(ParseItem(i, tok.text, UN_MUTABLE)); }
+				{ arr.items.push_back(ParseItem(i, tok.text, IMMUTABLE)); }
 			else if (tokens[i + 1].type == OPEN_BRACKET)
 				{ arr.subArrays.push_back(ParseArray(i, tok.text)); }
 
@@ -198,7 +204,7 @@ void Parser::Output() const
 					<< ")\n";
 			}
 
-			std::cout << "]\n\n";
+			std::cout << ((arr.size < 1) ? "\t/* Empty Array */\n" : "") << "]\n\n";
 		}
 
 		std::cout << "\n";
@@ -242,7 +248,7 @@ void Parser::Output() const
 					<< "\"\n";
 			}
 
-			std::cout << "}\n\n";
+			std::cout << ((item.size < 1) ? "\t/* Empty Item */\n" : "") << "}\n\n";
 		}
 
 		std::cout << "\n";

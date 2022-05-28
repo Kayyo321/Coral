@@ -16,11 +16,12 @@ public:
 
 	std::vector<std::string> keys;
 	std::vector<std::string> values;
-	std::vector<TokenType> types;
+	std::vector<enum TokenType> types;
 
 	size_t size;
 
 	bool isMutable {false};
+	bool isEmpty {false};
 };
 
 class Array
@@ -39,7 +40,7 @@ public:
 enum Access
 {
 	MUTABLE,
-	UN_MUTABLE
+	IMMUTABLE
 };
 
 class Parser

@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <windows.h>
 
 #include "Lexer.h"
 #include "Parser.h"
@@ -61,10 +62,17 @@ int main()
 	}
 	catch (std::runtime_error e)
 	{
+		HANDLE console {GetStdHandle(STD_OUTPUT_HANDLE)};
+		SetConsoleTextAttribute(console, 12);
+
 		std::cerr << "Error occurred: \"" << e.what() << "\"\n";
 
 		return 1;
 	}
+
+	std::cout << "Press 'Enter' to exit...\n\n";
+	std::cin.get();
+	std::cin.get();
 
 	return 0;
 }
