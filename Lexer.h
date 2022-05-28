@@ -46,6 +46,7 @@ public:
 	TokenType type {};
 	std::string text;
 	size_t lineNumber {1};
+	size_t charIndex {1};
 
 	void Info() const;
 };

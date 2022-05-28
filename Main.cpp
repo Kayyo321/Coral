@@ -45,10 +45,19 @@ int main()
 
 	std::cout << "\n\n--== Parser Output ==--\n\n";
 
-	Parser parser;
-	parser.Parse(tokens);
+	try
+	{
+		Parser parser;
+		parser.Parse(tokens);
 
-	parser.Output();
+		parser.Output();
+	}
+	catch (std::runtime_error e)
+	{
+		std::cerr << "Error occurred: \"" << e.what() << "\"\n";
+
+		return 1;
+	}
 
 	return 0;
 }

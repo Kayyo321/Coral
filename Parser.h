@@ -12,14 +12,9 @@ class Item
 public:
 	std::string name;
 
-	std::string title1;
-	std::string value1;
-	
-	std::string title2;
-	std::string value2;
-
-	TokenType type1;
-	TokenType type2;
+	std::vector<std::string> keys;
+	std::vector<std::string> values;
+	std::vector<TokenType> types;
 };
 
 class Array

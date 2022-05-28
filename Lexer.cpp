@@ -8,6 +8,8 @@ std::vector<Token> Lexer::Parse(const std::string &program)
 
 	for (char c: program)
 	{
+		++token.charIndex;
+
 		switch (c)
 		{
 			case '[':
@@ -130,17 +132,14 @@ std::vector<Token> Lexer::Parse(const std::string &program)
 				}
 				break;
 
-			case '(':
-			case ')':
-				/* Ignore. */
-				break;
-
 			case '=':
 			case '+':
 			case '-':
 			case '*':
 			case '<':
 			case '>':
+			case '(':
+			case ')':
 			case ';':
 			case ',':
 				if (token.type != STRING_LITERAL)
@@ -170,6 +169,7 @@ std::vector<Token> Lexer::Parse(const std::string &program)
 			case '\n':
 				CloseToken(token, tokens);
 				++token.lineNumber;
+				token.charIndex = 1;
 				break;
 
 			case '#':

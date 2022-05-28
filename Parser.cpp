@@ -23,6 +23,8 @@ void Parser::Parse(const std::vector<Token> &_tokens)
 				throw std::runtime_error(
 					std::string("Identifier without a block at line: '")
 					+ std::to_string(token.lineNumber)
+					+ std::string(", ")
+					+ std::to_string(token.charIndex)
 					+ std::string("'.")
 				);
 			}
@@ -32,11 +34,14 @@ void Parser::Parse(const std::vector<Token> &_tokens)
 
 Item Parser::ParseItem(size_t index, std::string _name)
 {
-	size_t endIndex {}, stage {0}, stage1 {0};
-	std::string lhs {}, rhs {},
-				lhs1 {}, rhs1 {};
+	size_t endIndex {}, stage {0};
+	
+	std::vector<std::string> _keys {};
+	std::vector<std::string> _values {};
+	std::vector<TokenType> _types {};
 
-	Item item{};
+	Item item {};
+	item.name = _name;
 
 	for (size_t i {index + 2}; i < tokens.size(); ++i)
 	{
@@ -45,44 +50,30 @@ Item Parser::ParseItem(size_t index, std::string _name)
 		if (tok.type == OPERATOR
 			&& tok.text == ",")
 		{
-			stage = 1;
-			stage1 = 0;
+			stage = 0;
 		}
 		else if (tok.type == COLON)
-			{ stage1 = 1; }
+			{ stage = 1; }
 		else
 		{
 			if (tok.type == CLOSE_CURLY)
 				{ endIndex = i; break; }
 
-			switch (stage)
+			if (stage == 0)
+				{ _keys.push_back(tok.text); }
+			else if (stage == 1)
 			{
-				case 0:
-					if (stage1 == 0)
-						{ lhs += tok.text; }
-					else if (stage1 == 1)
-						{ rhs += tok.text; item.type1 = tok.type; }
-					break;
-
-				case 1:
-					if (stage1 == 0)
-						{ lhs1 += tok.text; }
-					else if (stage1 == 1)
-						{ rhs1 += tok.text; item.type2 = tok.type; }
-					break;
+				_values.push_back(tok.text);
+				_types.push_back(tok.type);
 			}
 		}
 	}
 
 	token = tokens[endIndex];
 
-	item.name = _name;
-
-	item.title1 = lhs;
-	item.value1 = rhs;
-
-	item.title2 = lhs1;
-	item.value2 = rhs1;
+	item.keys = _keys;
+	item.values = _values;
+	item.types = _types;
 
 	return item;
 }
@@ -119,14 +110,14 @@ void Parser::Output() const
 				<< arr.name 
 				<< ", "
 				<< arr.size 
-				<< "): \n{\n";
+				<< "): \n[\n";
 
 			for (const Item &item: arr.items)
 			{
 				std::cout << "\tItem ( " << item.name << ")\n";
 			}
 
-			std::cout << "}\n\n";
+			std::cout << "]\n\n";
 		}
 
 		std::cout << "\n";
@@ -136,13 +127,20 @@ void Parser::Output() const
 	{
 		for (Item item: items)
 		{
-			std::cout << "Item ( " << item.name << "): \n[\n\t\""
-				<< item.title1 << "\": \""
-				<< "(" << TokenTypeStrings[item.type1] << ") " << item.value1 
-				<< "\", \n\t\""
-				<< item.title2 << "\": \""
-				<< "(" << TokenTypeStrings[item.type2] << ") " << item.value2
-				<< "\"\n]\n\n";
+			std::cout << "Item ( " << item.name << "): \n{\n";
+
+			for (size_t i {0}; i < item.keys.size(); ++i)
+			{
+				std::cout << "\t"
+					<< item.keys[i]
+					<< ": ( "
+					<< TokenTypeStrings[item.types[i]]
+					<< " ) \""
+					<< item.values[i]
+					<< "\"\n";
+			}
+
+			std::cout << "}\n\n";
 		}
 
 		std::cout << "\n";

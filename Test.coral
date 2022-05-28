@@ -1,14 +1,14 @@
-(kay) { "Money": 50, "Debt": 23 }
+kay { "Money": 50, "Debt": 23 }
 
-(Weapon)
+Weapon
 [
-	(Knife) { "Damage": 25, "Durability": 83 }
-	(Brass Knuckles) { "Damage": 45, "Durability": 76.3 }
-	(Gun) { "Damage": 83.6, "Durability": 20.3 }
+	Knife { "Damage": 25, "Durability": 83, "Sharpness": 61.34 }
+	Brass Knuckles { "Damage": 45, "Durability": 76.3 }
+	Gun { "Damage": 83.6, "Durability": 20.3 }
 ]
 
-(Animals)
+Animals
 [
-	(Dog) { "Breed": "French Bulldog", "Age": 2.35 }
-	(Lizzard) { "Scales": 38, "Name": "Lizzo" }
+	Dog { "Breed": "French Bulldog", "Age": 2.36 }
+	Lizzard { "Scales": 38, "Name": "Lizzo" }
 ]
