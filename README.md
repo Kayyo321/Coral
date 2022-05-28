@@ -29,6 +29,24 @@ Players
 ]
 ```
 
+By default, objects are `Immutable`, or unchange-able (Also, comments are defined with a `#` symbol):
+
+```
+Kay { "Money": 50, "Debt": 23 } # This will be outputed as Immutable.
+```
+
+By adding the `mutable`, or the `!mutable` keyword after an identifier, you can express it's mutability:
+
+```
+Kay : mutable { "Money": 50, "Debt": 23 }
+```
+
+or
+
+```
+kay : !mutable { "Money": 50, "Debt": 23 }
+```
+
 ## Examples
 
 ### (Original Code)
