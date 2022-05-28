@@ -90,7 +90,18 @@ Array Parser::ParseArray(size_t index, std::string _name)
 		Token tok {tokens[i]};
 
 		if (tok.type == IDENTIFIER)
-			{ arr.items.push_back(ParseItem(i, tok.text)); ++arr.size; }
+		{
+			if (tokens[i + 1].type == OPEN_CURLY)
+			{
+				arr.items.push_back(ParseItem(i, tok.text));
+			}
+			else if (tokens[i + 1].type == OPEN_BRACKET)
+			{
+				arr.subArrays.push_back(ParseArray(i, tok.text));
+			}
+
+			++arr.size; 
+		}
 		else if (tok.type == CLOSE_BRACKET)
 			{ endIndex = i; break; }
 	}
@@ -115,6 +126,11 @@ void Parser::Output() const
 			for (const Item &item: arr.items)
 			{
 				std::cout << "\tItem ( " << item.name << ")\n";
+			}
+
+			for (const Array &sArr: arr.subArrays)
+			{
+				std::cout << "\tArray ( " << sArr.name << ")\n";
 			}
 
 			std::cout << "]\n\n";

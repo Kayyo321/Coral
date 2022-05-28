@@ -43,7 +43,7 @@ int main()
 	for (const Token &token: tokens)
 		{ token.Info(); }
 
-	std::cout << "\n\n--== Parser Output ==--\n\n";
+	std::cout << "\n\n--== Parser ==--\n\n";
 
 	try
 	{

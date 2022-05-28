@@ -23,6 +23,7 @@ public:
 	std::string name;
 	
 	std::vector<Item> items;
+	std::vector<Array> subArrays;
 
 	size_t size;
 };
