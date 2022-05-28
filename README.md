@@ -16,25 +16,28 @@ As prompted, enter the path to the coral file you want to parse.
 How items are defined:
 
 ```
-(Jeffery) { "HP": 80.67, "Durability": 20 }
+Jeffery { "HP": 80.67, "Durability": 20 }
 ```
 
 how arrays are defined:
 
 ```
-(Players)
+Players
 [
-  (Jeffery) { "HP": 80.67, "Durability": 20 }
-  (Donnald) { "HP": 76, "Durability": 40.57 }
+  Jeffery { "HP": 80.67, "Durability": 20 }
+  Donnald { "HP": 76, "Durability": 40.57 }
 ]
 ```
 
 ## Examples
 
 ### (Original Code)
-![CodeExample](ReadMeImages/CodeExample.png)
+![Code](ReadMeImages/Code.png)
 
 ### (Output)
-![OutputExample1](ReadMeImages/OutputExample1.png)
-![OutputExample2](ReadMeImages/OutputExample2.png)
-![OutputExample3](ReadMeImages/OutputExample3.png)
+
+#### (Lexer)
+![Lexer](ReadMeImages/Lexer.png)
+
+#### (Parser)
+![Parser](ReadMeImages/Parser.png)
