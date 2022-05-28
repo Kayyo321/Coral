@@ -1,0 +1,14 @@
+(kay) { "Money": 50, "Debt": 23 }
+
+(Weapon)
+[
+	(Knife) { "Damage": 25, "Durability": 83 }
+	(Brass Knuckles) { "Damage": 45, "Durability": 76.3 }
+	(Gun) { "Damage": 83.6, "Durability": 20.3 }
+]
+
+(Animals)
+[
+	(Dog) { "Breed": "French Bulldog", "Age": 2.35 }
+	(Lizzard) { "Scales": 38, "Name": "Lizzo" }
+]
