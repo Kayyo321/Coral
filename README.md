@@ -31,7 +31,10 @@ how arrays are defined:
 
 ## Examples
 
+### (Original Code)
 ![CodeExample](ReadMeImages/CodeExample.png)
+
+### (Output)
 ![OutputExample1](ReadMeImages/OutputExample1.png)
 ![OutputExample2](ReadMeImages/OutputExample2.png)
 ![OutputExample3](ReadMeImages/OutputExample3.png)
