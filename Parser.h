@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <stdexcept>
+#include <algorithm>
+#include <cctype>
 
 #include "Lexer.h"
 
@@ -15,6 +17,10 @@ public:
 	std::vector<std::string> keys;
 	std::vector<std::string> values;
 	std::vector<TokenType> types;
+
+	size_t size;
+
+	bool isMutable {false};
 };
 
 class Array
@@ -26,6 +32,14 @@ public:
 	std::vector<Array> subArrays;
 
 	size_t size;
+
+	bool isMutable {false};
+};
+
+enum Access
+{
+	MUTABLE,
+	UN_MUTABLE
 };
 
 class Parser
@@ -35,13 +49,16 @@ public:
 
 	void Output() const;
 
-private:
-	Item ParseItem(size_t, std::string);
-	Array ParseArray(size_t, std::string);
+	std::vector<Item> GetItems() { return items; }
+	std::vector<Array> GetArrays() { return arrays; }
 
-	std::vector<Token> tokens;
-	Token token;
+private:
+	Item ParseItem(size_t, std::string, Access);
+	Array ParseArray(size_t, std::string);
 
 	std::vector<Array> arrays;
 	std::vector<Item> items;
+
+	std::vector<Token> tokens;
+	Token token;
 };

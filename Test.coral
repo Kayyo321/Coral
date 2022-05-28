@@ -1,4 +1,4 @@
-kay { "Money": 50, "Debt": 23 }
+kay : mutable { "Money": 50, "Debt": 23 }
 
 Weapon
 [
