@@ -13,13 +13,13 @@ As prompted, enter the path to the coral file you want to parse.
 
 ## Syntax
 
-Items are defined:
+How items are defined:
 
 ```
 (Jeffery) { "HP": 80.67, "Durability": 20 }
 ```
 
-Arrays are defined:
+how arrays are defined:
 
 ```
 (Players)
