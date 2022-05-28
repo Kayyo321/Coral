@@ -5,7 +5,7 @@ Coral, a parser for my json-like language!
 ## How to run
 
 If you download the source code, and run Main.cpp, you can run the program as normal.
-Otherwise, you can download the exe from the releases page.
+You can also download the source code from the releases page, and get information on the latest release of Coral.
 
 ## How to use
 
