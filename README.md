@@ -31,6 +31,8 @@ Players
 
 how lists are defined; lists are different to arrays because they are always `Mutable`:
 
+#### You cannot have a list inside of either an array, or another list. Only sub-arrays exist.
+
 ```
 Animals : list
 [
@@ -38,8 +40,6 @@ Animals : list
 	Cat { "Age": 5.33 }               # This will also be mutable.
 ]
 ```
-
-#### You cannot have a list inside of either an array, or another list. Only sub-arrays exist.
 
 By default, objects are `Immutable`, or unchange-able (Also, comments are defined with a `#` symbol):
 
