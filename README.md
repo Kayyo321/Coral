@@ -19,13 +19,23 @@ How items are defined:
 Jeffery { "HP": 80.67, "Durability": 20 }
 ```
 
-how arrays are defined:
+how arrays are defined; arrays are different to lists because they are always `Immutable`:
 
 ```
 Players
 [
-  Jeffery { "HP": 80.67, "Durability": 20 }
-  Donnald { "HP": 76, "Durability": 40.57 }
+  Jeffery { "HP": 80.67, "Durability": 20 } # This will be immutable.
+  Donnald { "HP": 76, "Durability": 40.57 } # This will also be immutabe.
+]
+```
+
+how lists are defined; lists are different to arrays because they are always `Mutable`:
+
+```
+Animals : list
+[
+	Dog { "Breed": "French Bulldog" } # This will be mutable.
+	Cat { "Age": 5.33 }               # This will also be mutable.
 ]
 ```
 
