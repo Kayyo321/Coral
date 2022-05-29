@@ -39,6 +39,8 @@ Animals : list
 ]
 ```
 
+#### You cannot have a list inside of either an array, or another list. Only sub-arrays exist.
+
 By default, objects are `Immutable`, or unchange-able (Also, comments are defined with a `#` symbol):
 
 ```
