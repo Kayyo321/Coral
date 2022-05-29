@@ -315,16 +315,6 @@ void Parser::Output() const
 					<< ")\n";
 			}
 
-			for (const Array &sList: arr.subLists)
-			{
-				std::cout << ((sList.isMutable) ? "Mutable" : "Immutable")
-					<< " List ( "
-					<< sList.name
-					<< ", size: "
-					<< sList.size
-					<< ")\n";
-			}
-
 			std::cout << ((arr.size < 1) ? "\t/* Empty Array */\n" : "") << "]\n\n";
 		}
 
@@ -377,16 +367,6 @@ void Parser::Output() const
 					<< sArr.name
 					<< ", size: "
 					<< sArr.size
-					<< ")\n";
-			}
-
-			for (const Array &sList: arr.subLists)
-			{
-				std::cout << ((sList.isMutable) ? "Mutable" : "Immutable")
-					<< " List ( "
-					<< sList.name
-					<< ", size: "
-					<< sList.size
 					<< ")\n";
 			}
 

@@ -31,7 +31,6 @@ public:
 	
 	std::vector<Item> items;
 	std::vector<Array> subArrays;
-	std::vector<Array> subLists;
 
 	size_t size;
 
