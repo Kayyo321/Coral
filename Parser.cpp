@@ -173,11 +173,6 @@ Array Parser::ParseList(size_t index, std::string _name)
 			}
 			else if (tokens[i + 1].type == COLON && tokens[i + 2].type == IDENTIFIER)
 			{
-				if (tokens[i + 2].text == "list")
-				{
-					arr.subLists.push_back(ParseList(i, tok.text));
-				}
-
 				throw std::runtime_error(
 					std::string("Cannot express mutability: \"")
 					+ std::string(token.text)
@@ -279,69 +274,7 @@ void Parser::Output() const
 		{ 
 			std::cout << "Array ("
 				<< arr.name 
-				<< ", "
-				<< arr.size 
-				<< "): \n[\n";
-
-			for (const Item &item: arr.items)
-			{ 
-				ignoreItems.push_back(item);
-
-				std::cout << "\t"
-					<< ((item.isMutable) ? "Mutable" : "Immutable")
-					<< " Item ("
-					<< item.name
-					<< ", "
-					<< item.size
-					<< "): \n\t{\n";
-
-				for (size_t i{ 0 }; i < item.keys.size(); ++i)
-				{
-					std::cout << "\t\t"
-						<< item.keys[i]
-						<< ": ( "
-						<< TokenTypeStrings[item.types[i]]
-						<< " ) \""
-						<< item.values[i]
-						<< "\"\n";
-				}
-
-				std::cout << "\t}\n\n";
-			}
-
-			for (const Array &sArr: arr.subArrays)
-			{
-				std::cout << "\tImmutable Array ( "
-					<< sArr.name
-					<< ", "
-					<< sArr.size
-					<< ")\n";
-			}
-
-			for (const Array &sList: arr.subLists)
-			{
-				std::cout << "Mutable List ( "
-					<< sList.name
-					<< ", "
-					<< sList.size
-					<< ")\n";
-			}
-
-			std::cout << ((arr.size < 1) ? "\t/* Empty Array */\n" : "") << "]\n\n";
-		}
-
-		std::cout << "\n";
-	}
-
-	if (lists.size() > 0)
-	{
-		std::cout << "------- lists -------\n\n\n";
-
-		for (const Array &arr: lists)
-		{ 
-			std::cout << "List ("
-				<< arr.name 
-				<< ", "
+				<< ", size: "
 				<< arr.size 
 				<< "): \n[\n";
 
@@ -377,7 +310,7 @@ void Parser::Output() const
 					<< ((sArr.isMutable) ? "Mutable" : "Immutable")
 					<< " Array ( "
 					<< sArr.name
-					<< ", "
+					<< ", size: "
 					<< sArr.size
 					<< ")\n";
 			}
@@ -387,7 +320,72 @@ void Parser::Output() const
 				std::cout << ((sList.isMutable) ? "Mutable" : "Immutable")
 					<< " List ( "
 					<< sList.name
-					<< ", "
+					<< ", size: "
+					<< sList.size
+					<< ")\n";
+			}
+
+			std::cout << ((arr.size < 1) ? "\t/* Empty Array */\n" : "") << "]\n\n";
+		}
+
+		std::cout << "\n";
+	}
+
+	if (lists.size() > 0)
+	{
+		std::cout << "------- lists -------\n\n\n";
+
+		for (const Array &arr: lists)
+		{ 
+			std::cout << "List ("
+				<< arr.name 
+				<< ", size: "
+				<< arr.size 
+				<< "): \n[\n";
+
+			for (const Item &item: arr.items)
+			{ 
+				ignoreItems.push_back(item);
+
+				std::cout << "\t"
+					<< ((item.isMutable) ? "Mutable" : "Immutable")
+					<< " Item ("
+					<< item.name
+					<< ", size: "
+					<< item.size
+					<< "): \n\t{\n";
+
+				for (size_t i{ 0 }; i < item.keys.size(); ++i)
+				{
+					std::cout << "\t\t"
+						<< item.keys[i]
+						<< ": ( "
+						<< TokenTypeStrings[item.types[i]]
+						<< " ) \""
+						<< item.values[i]
+						<< "\"\n";
+				}
+
+				std::cout << "\t}\n\n";
+			}
+
+			for (const Array &sArr: arr.subArrays)
+			{
+				std::cout << "\t"
+					<< ((sArr.isMutable) ? "Mutable" : "Immutable")
+					<< " Array ( "
+					<< sArr.name
+					<< ", size: "
+					<< sArr.size
+					<< ")\n";
+			}
+
+			for (const Array &sList: arr.subLists)
+			{
+				std::cout << ((sList.isMutable) ? "Mutable" : "Immutable")
+					<< " List ( "
+					<< sList.name
+					<< ", size: "
 					<< sList.size
 					<< ")\n";
 			}
@@ -419,7 +417,7 @@ void Parser::Output() const
 			std::cout << ((item.isMutable) ? "Mutable" : "Immutable")
 				<< " Item (" 
 				<< item.name 
-				<< ", "
+				<< ", size: "
 				<< item.size
 				<< "): \n{\n";
 

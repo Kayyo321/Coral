@@ -1,14 +1,14 @@
-Test : mutable { "NULL": 0 }
+Kay : mutable { "Money": 50, "Debt": 24.32 }
 
-Players
+Players 
 [
 	Sullivan { "HP": 20.34, "Defense": 64.5, "Attack": 25 }
 	David { "HP": 42.43, "Defense": 22.6, "Attack": 34 }
-	Ryan { "HP": 28.7, "Defense": 44, "Attack": 63}
+	Ryan { "HP": 28.7, "Defense": 44, "Attack": 63 }
 ]
 
 Animals : list
 [
-	Dog { "Breed": "French Bulldog" }
+	Dog { "Breed": "French Bulldog", "Age": 2.35 }
 	Cat { "Age": 5.33 }
 ]
