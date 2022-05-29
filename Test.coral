@@ -1,14 +1,14 @@
-kay : mutable { "Money": 50, "Debt": 23 }
+Test : mutable { "NULL": 0 }
 
-Weapon
+Players
 [
-	Knife { "Damage": 25, "Durability": 83, "Sharpness": 61.34 }
-	Brass Knuckles { "Damage": 45, "Durability": 76.3 }
-	Gun { "Damage": 83.6, "Durability": 20.3 }
+	Sullivan { "HP": 20.34, "Defense": 64.5, "Attack": 25 }
+	David { "HP": 42.43, "Defense": 22.6, "Attack": 34 }
+	Ryan { "HP": 28.7, "Defense": 44, "Attack": 63}
 ]
 
-Animals
+Animals : list
 [
-	Dog { "Breed": "French Bulldog", "Age": 2.36 }
-	Lizzard { "Scales": 38, "Name": "Lizzo" }
+	Dog { "Breed": "French Bulldog" }
+	Cat { "Age": 5.33 }
 ]

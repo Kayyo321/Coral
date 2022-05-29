@@ -31,6 +31,7 @@ public:
 	
 	std::vector<Item> items;
 	std::vector<Array> subArrays;
+	std::vector<Array> subLists;
 
 	size_t size;
 
@@ -56,8 +57,10 @@ public:
 private:
 	Item ParseItem(size_t, std::string, Access);
 	Array ParseArray(size_t, std::string);
+	Array ParseList(size_t, std::string);
 
 	std::vector<Array> arrays;
+	std::vector<Array> lists;
 	std::vector<Item> items;
 
 	std::vector<Token> tokens;
